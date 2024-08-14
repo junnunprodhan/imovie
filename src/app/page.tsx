@@ -8,6 +8,7 @@ import {
   fetchNowPlayingMovies,
   fetchPopularMovies,
 } from '../api/services/movieService';
+import Banner from '@/components/Banner';
 
 const Home = () => {
   const [latestMovie, setLatestMovie] = useState<any>(null);
@@ -27,23 +28,28 @@ const Home = () => {
 
     fetchData();
   }, []);
-
+  const posterPath = popularMovies[0]?.poster_path
+  const title = popularMovies[0]?.title  
+  console.log(title)
   return (
     <div className="flex h-screen">
       {/* Column 1: Non-Functional */}
-      <div className="w-1/5 shadow-xl">
+      <div className="w-1/6">
         <Sidebar />
+        
       </div>
-
+      <div className="relative h-full ">
+          <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-200 shadow-lg"></div>
+       </div>
       {/* Column 2: Functional */}
       <div className="w-3/5 p-4 space-y-8">
         {/* Row 1: Latest Movie */}
-        <div>
+        <div  className='h-56'>
           <h4 className="text-xl font-semibold mb-2">Latest Movie</h4>
           {latestMovie && (
-            <MovieCard
-              posterPath={latestMovie.poster_path}
-              title={latestMovie.title}
+            <Banner
+              posterPath={posterPath}
+              title={title}
             />
           )}
         </div>
@@ -61,7 +67,7 @@ const Home = () => {
 
         {/* Row 3: Popular Movies */}
         <div>
-          <h4 className="text-xl font-semibold mb-2">Popular Movies</h4>
+          <h4 className="text-xl font-semibold mb-2">Top Rated Movies</h4>
           <HorizontalList
             items={popularMovies.map((movie) => ({
               posterPath: movie.poster_path,
