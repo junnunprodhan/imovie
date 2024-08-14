@@ -28,6 +28,7 @@
 // export default Banner;
 
 import React from 'react';
+import Button from './Button';
 
 interface BannerProps {
     posterPath: string;
@@ -36,7 +37,11 @@ interface BannerProps {
 
 const Banner: React.FC<BannerProps> = ({ posterPath, title }) => {
     // You can replace the posterPic with the actual posterPath passed as a prop
-    const posterPic = posterPath || '/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg';
+    const posterPic = posterPath || '/https://ibb.co/P15KYSz';
+    const extraTitle = title || 'SUPER NATURAL';
+    const handleClick = () => {
+        console.log('Button clicked!');
+      };
 
     console.log(posterPath, title);
 
@@ -44,8 +49,8 @@ const Banner: React.FC<BannerProps> = ({ posterPath, title }) => {
         <div 
             className="hero mb-5"
             style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/w500${posterPic})`,
-                height: '500px', // Set the height of the hero section to 300px
+                backgroundImage: `url(https://image.tmdb.org/t/p/w500${extraTitle})`,
+                height: '300px', // Set the height of the hero section to 300px
                 backgroundSize: 'cover', // Ensure the image covers the entire section
                 backgroundPosition: 'center', // Center the image
             }}
@@ -54,7 +59,7 @@ const Banner: React.FC<BannerProps> = ({ posterPath, title }) => {
             <div className="hero-content text-neutral-content text-center">
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">{title}</h1>
-                    <button className="btn btn-primary">Get Started</button>
+                    <Button text="Watch Now" onClick={handleClick} />
                 </div>
             </div>
         </div>

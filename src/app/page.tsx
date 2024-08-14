@@ -2,13 +2,14 @@
 import { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import HorizontalList from '../components/HorizontalList';
-import MovieCard from '../components/MovieCard';
+// import MovieCard from '../components/MovieCard';
 import {
   fetchLatestMovie,
   fetchNowPlayingMovies,
   fetchPopularMovies,
 } from '../api/services/movieService';
 import Banner from '@/components/Banner';
+import NowPlaying from '@/components/NowPlaying';
 
 const Home = () => {
   const [latestMovie, setLatestMovie] = useState<any>(null);
@@ -55,7 +56,7 @@ const Home = () => {
         </div>
 
         {/* Row 2: Now Playing */}
-        <div>
+        {/* <div className='mt-5'>
           <h4 className="text-xl font-semibold mb-2">Now Playing</h4>
           <HorizontalList
             items={nowPlayingMovies.map((movie) => ({
@@ -63,7 +64,11 @@ const Home = () => {
               title: movie.title,
             }))}
           />
-        </div>
+        </div> */}
+
+        <NowPlaying
+         movies={nowPlayingMovies}
+        ></NowPlaying>
 
         {/* Row 3: Popular Movies */}
         <div>

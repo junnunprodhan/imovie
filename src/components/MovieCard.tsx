@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import Button from './Button';
 
 interface MovieCardProps {
   posterPath: string;
@@ -7,8 +8,11 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ posterPath, title }) => {
+  const handleClick = () => {
+    console.log('Button clicked!');
+  };
   return (
-    <div className="text-center">
+    <div className="text-center relative">
       <Image
       width={200}
       height={250}
@@ -16,7 +20,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ posterPath, title }) => {
         alt={title}
         className="img-fluid"
       />
-      <p className="mt-2">{title}</p>
+      <Button text="Watch Now" onClick={handleClick} />
     </div>
   );
 };
