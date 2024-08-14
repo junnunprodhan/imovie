@@ -13,7 +13,7 @@ interface MoviesGridProps {
   movies: Movie[];
 }
 
-const NowPlaying: React.FC<MoviesGridProps> = ({ movies }) => {
+const TopRated: React.FC<MoviesGridProps> = ({ movies }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
@@ -88,5 +88,4 @@ const NowPlaying: React.FC<MoviesGridProps> = ({ movies }) => {
   );
 };
 
-export default NowPlaying;
-
+export default TopRated;

@@ -10,6 +10,7 @@ import {
 } from '../api/services/movieService';
 import Banner from '@/components/Banner';
 import NowPlaying from '@/components/NowPlaying';
+import TopRated from '@/components/TopRated';
 
 const Home = () => {
   const [latestMovie, setLatestMovie] = useState<any>(null);
@@ -31,7 +32,7 @@ const Home = () => {
   }, []);
   const posterPath = popularMovies[0]?.poster_path
   const title = popularMovies[0]?.title  
-  console.log(title)
+  console.log(popularMovies)
   return (
     <div className="flex h-screen">
       {/* Column 1: Non-Functional */}
@@ -71,7 +72,9 @@ const Home = () => {
         ></NowPlaying>
 
         {/* Row 3: Popular Movies */}
-        <div>
+
+
+        {/* <div>
           <h4 className="text-xl font-semibold mb-2">Top Rated Movies</h4>
           <HorizontalList
             items={popularMovies.map((movie) => ({
@@ -79,9 +82,14 @@ const Home = () => {
               title: movie.title,
             }))}
           />
-        </div>
+        </div> */}
+     
+     
+     <NowPlaying
+         movies={nowPlayingMovies}
+        ></NowPlaying>
+        
       </div>
-
       {/* Column 3: Non-Functional */}
       <div className="w-1/5 bg-gray-800 p-4">
         <h5 className="text-lg text-white">Extras</h5>
