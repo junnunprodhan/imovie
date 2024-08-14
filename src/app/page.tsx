@@ -1,8 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
-import HorizontalList from '../components/HorizontalList';
-// import MovieCard from '../components/MovieCard';
 import {
   fetchLatestMovie,
   fetchNowPlayingMovies,
@@ -11,6 +9,7 @@ import {
 import Banner from '@/components/Banner';
 import NowPlaying from '@/components/NowPlaying';
 import TopRated from '@/components/TopRated';
+import RightSidebar from '@/components/Rightsidebar';
 
 const Home = () => {
   const [latestMovie, setLatestMovie] = useState<any>(null);
@@ -35,16 +34,17 @@ const Home = () => {
   console.log(popularMovies)
   return (
     <div className="flex h-screen">
-      {/* Column 1: Non-Functional */}
+     
       <div className="w-1/6">
         <Sidebar />
         
       </div>
-      <div className="relative h-full ">
-          <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-200 shadow-lg"></div>
-       </div>
+      <div className="relative h-screen">
+  <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-200 shadow-lg"></div>
+</div>
+
       {/* Column 2: Functional */}
-      <div className="w-3/5 p-4 space-y-8">
+      <div className="w-3/5 m-5 p-4 space-y-8">
         {/* Row 1: Latest Movie */}
         <div  className='h-56'>
           <h4 className="text-xl font-semibold mb-2">Latest Movie</h4>
@@ -85,16 +85,19 @@ const Home = () => {
         </div> */}
      
      
-     <NowPlaying
-         movies={nowPlayingMovies}
-        ></NowPlaying>
+   {/* <TopRated movies={[]}>
+    movies={popularMovies}
+   </TopRated> */}
         
       </div>
+
+
+      <div className="relative h-screen">
+  <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-200 shadow-lg"></div>
+</div>
+
       {/* Column 3: Non-Functional */}
-      <div className="w-1/5 bg-gray-800 p-4">
-        <h5 className="text-lg text-white">Extras</h5>
-        {/* Add additional static content or components here */}
-      </div>
+      <RightSidebar></RightSidebar>
     </div>
   );
 };
