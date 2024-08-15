@@ -17,12 +17,7 @@ export const fetchNowPlayingMovies = async () => {
   return response.data.results.slice(4, 16);
 };
 
-// export const fetchPopularMovies = async () => {
-//   const response = await axios.get(`${BASE_URL}/movie/popular`, {
-//     params: { api_key: API_KEY },
-//   });
-//   return response.data.results.slice(0, 12);
-// };
+
 export const fetchPopularMovies = async () => {
   try {
     const response = await axios.get('https://api.themoviedb.org/3/discover/movie', {
@@ -43,11 +38,41 @@ export const fetchPopularMovies = async () => {
   }
 };
 
-export const fetchLatestTVShow = async () => {
-  const response = await axios.get(`${BASE_URL}/tv/latest`, {
-    params: { api_key: API_KEY },
-  });
-  return response.data;
+export const fetchMovieDetails = async (movieId: number) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${movieId}`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching movie details:', error);
+    throw error;
+  }
+};
+
+
+
+
+export const fetchNowPlayingTvShows = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/tv/airing_today`, {
+      params: {
+        api_key: API_KEY,
+        language: 'en-US',
+        page: 1,
+      },
+    });
+
+    // Slice the results if you want to limit the number of TV shows returned
+    const tvShows = response.data.results.slice(0, 10); // Fetch the top 10 airing today
+    return tvShows;
+  } catch (error) {
+    console.error('Error fetching TV shows airing today:', error);
+    return [];
+  }
 };
 
 export const fetchAiringTodayTVShows = async () => {
@@ -66,9 +91,12 @@ export const fetchPopularTVShows = async () => {
         page: 1,
       },
     });
-    return response.data.results;
+    return response.data.results.slice(7,19);
   } catch (error) {
     console.error('Error fetching popular TV shows:', error);
     return [];
   }
 };
+
+
+

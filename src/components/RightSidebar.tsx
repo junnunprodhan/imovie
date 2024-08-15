@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Search from './Search';
-import Image from 'next/image';
-import { AiFillStar } from "react-icons/ai";
 import Button from './Button';
 import MovieItem from './MovieItem';
 import { fetchPopularMovies, fetchPopularTVShows } from '@/api/services/movieService';
+import SeeMoreButton from './SeeMoreButton';
 const RightSidebar = () => {
   const [popularMovies, setPopularMovies] = useState<any[]>([]);
   const [popularTvShows, setPopularTvShows] = useState<any[]>([]);
@@ -45,7 +44,8 @@ const RightSidebar = () => {
     </div>
       
 
-      <Button text="See More" onClick={handleClick} />
+      {/* <Button text="See More" onClick={handleClick} /> */}
+      <SeeMoreButton text="See More" onClick={handleClick}/>
       <h5 className="text-lg my-2 mt-3 font-bold">Watchlist</h5>
       <div className="">
       {tvShows.map((movie) => (
@@ -59,7 +59,7 @@ const RightSidebar = () => {
         />
       ))}
     </div>
-      <Button text="See More" onClick={handleClick} />
+    <SeeMoreButton text="See More" onClick={handleClick}/>
     </div>
   );
 };
