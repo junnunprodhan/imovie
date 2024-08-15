@@ -8,8 +8,8 @@ import {
 } from '../api/services/movieService';
 import Banner from '@/components/Banner';
 import NowPlaying from '@/components/NowPlaying';
-import TopRated from '@/components/TopRated';
-import RightSidebar from '@/components/Rightsidebar';
+import RightSidebar from '@/components/RightSidebar';
+
 
 const Home = () => {
   const [latestMovie, setLatestMovie] = useState<any>(null);
@@ -88,13 +88,17 @@ const Home = () => {
    {/* <TopRated movies={[]}>
     movies={popularMovies}
    </TopRated> */}
+
+<NowPlaying
+         movies={nowPlayingMovies}
+        ></NowPlaying>
         
       </div>
 
 
-      <div className="relative h-screen">
-  <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-200 shadow-lg"></div>
-</div>
+      <div className="relative h-full">
+        <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-200 shadow-lg"></div>
+     </div>
 
       {/* Column 3: Non-Functional */}
       <RightSidebar></RightSidebar>
