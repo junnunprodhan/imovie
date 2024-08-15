@@ -9,12 +9,13 @@ import {
 import Banner from '@/components/Banner';
 import NowPlaying from '@/components/NowPlaying';
 import RightSidebar from '@/components/RightSidebar';
-
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 const Home = () => {
   const [latestMovie, setLatestMovie] = useState<any>(null);
   const [nowPlayingMovies, setNowPlayingMovies] = useState<any[]>([]);
   const [popularMovies, setPopularMovies] = useState<any[]>([]);
+  console.log('popular',popularMovies)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +34,7 @@ const Home = () => {
   const title = popularMovies[0]?.title  
   console.log(popularMovies)
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen max-w-screen-2xl mx-auto">
      
       <div className="w-1/6">
         <Sidebar />
@@ -45,9 +46,20 @@ const Home = () => {
 
       {/* Column 2: Functional */}
       <div className="w-3/5 m-5 p-4 space-y-8">
-        {/* Row 1: Latest Movie */}
-        <div  className='h-56'>
-          <h4 className="text-xl font-semibold mb-2">Latest Movie</h4>
+      <Tabs>
+          <TabList className={"flex items-center sm:flex-wrap"}>
+            <Tab className={"mr-4"}
+             selectedClassName="text-black font-bold"
+            >Movie</Tab>
+            <Tab
+            
+             selectedClassName="text-black font-bold"
+            >TV Shows</Tab>
+          
+          </TabList>
+
+          <TabPanel>
+            <div><div  className='h-56'>
           {latestMovie && (
             <Banner
               posterPath={posterPath}
@@ -55,43 +67,32 @@ const Home = () => {
             />
           )}
         </div>
-
-        {/* Row 2: Now Playing */}
-        {/* <div className='mt-5'>
-          <h4 className="text-xl font-semibold mb-2">Now Playing</h4>
-          <HorizontalList
-            items={nowPlayingMovies.map((movie) => ({
-              posterPath: movie.poster_path,
-              title: movie.title,
-            }))}
-          />
-        </div> */}
-
         <NowPlaying
          movies={nowPlayingMovies}
         ></NowPlaying>
-
-        {/* Row 3: Popular Movies */}
-
-
-        {/* <div>
-          <h4 className="text-xl font-semibold mb-2">Top Rated Movies</h4>
-          <HorizontalList
-            items={popularMovies.map((movie) => ({
-              posterPath: movie.poster_path,
-              title: movie.title,
-            }))}
-          />
-        </div> */}
-     
-     
-   {/* <TopRated movies={[]}>
-    movies={popularMovies}
-   </TopRated> */}
-
-<NowPlaying
+        <NowPlaying
+         movies={nowPlayingMovies}
+        ></NowPlaying></div>
+          </TabPanel>
+          <TabPanel>
+            <h1>tv shows</h1>
+          </TabPanel>
+          </Tabs>
+        {/* Row 1: Latest Movie */}
+        {/* <div  className='h-56'>
+          {latestMovie && (
+            <Banner
+              posterPath={posterPath}
+              title={title}
+            />
+          )}
+        </div>
+        <NowPlaying
          movies={nowPlayingMovies}
         ></NowPlaying>
+        <NowPlaying
+         movies={nowPlayingMovies}
+        ></NowPlaying> */}
         
       </div>
 
@@ -108,3 +109,17 @@ const Home = () => {
 
 export default Home;
 
+// <Tabs>
+{/* <TabList className={"flex justify-center items-center sm:flex-wrap"}>
+<Tab>Recent</Tab>
+<Tab>All</Tab>
+
+</TabList>
+
+<TabPanel>
+
+</TabPanel>
+<TabPanel>
+
+</TabPanel>
+</Tabs> */}

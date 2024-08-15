@@ -37,7 +37,7 @@ interface BannerProps {
 
 const Banner: React.FC<BannerProps> = ({ posterPath, title }) => {
     // You can replace the posterPic with the actual posterPath passed as a prop
-    const posterPic = posterPath || '/https://ibb.co/P15KYSz';
+    const posterPic = posterPath || '/https://i.ibb.co/KV9dG1z/super.jpg';
     const extraTitle = title || 'SUPER NATURAL';
     const handleClick = () => {
         console.log('Button clicked!');
@@ -55,6 +55,8 @@ const Banner: React.FC<BannerProps> = ({ posterPath, title }) => {
                 backgroundPosition: 'center', // Center the image
             }}
         >
+            <div className='flex'>
+            </div>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-neutral-content text-center">
                 <div className="max-w-md">

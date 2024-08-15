@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Search from './Search';
 import Image from 'next/image';
 import { AiFillStar } from "react-icons/ai";
 import Button from './Button';
+import MovieItem from './MovieItem';
+import { fetchPopularMovies, fetchPopularTVShows } from '@/api/services/movieService';
 const RightSidebar = () => {
+  const [popularMovies, setPopularMovies] = useState<any[]>([]);
+  const [popularTvShows, setPopularTvShows] = useState<any[]>([]);
+      const movies =popularMovies.slice(0,2) 
+      const tvShows = popularTvShows.slice(0,4)
+      console.log(tvShows)
+  useEffect(() => {
+    const fetchData = async () => {
+      
+      const popularTvShowsData = await fetchPopularTVShows();
+      const popularMoviesData = await fetchPopularMovies();
+      setPopularTvShows(popularTvShowsData);
+      setPopularMovies(popularMoviesData);
+    };
+
+    fetchData();
+  }, []);
+
   const handleClick = () => {
     console.log('Button clicked!');
   };
@@ -11,116 +30,35 @@ const RightSidebar = () => {
     <div className="w-1/5 p-6 m-5">
       <Search />
       <h5 className="text-lg my-2 font-bold">Popular Movies</h5>
-      <div className='flex gap-4'>
-        <div>
-          <Image
-            width={50} 
-            height={80}
-            src='https://i.ibb.co/18SY9sm/natural.jpg'
-            alt='Popular Movie'
-            className="img-fluid rounded-md"
-          />
-        </div>
-        <div>
-          <h3 className='font-bold'>Natural</h3>
-          <p className='text-sm'>Action movie</p>
-          <div className='flex gap-1'><AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' />
-          <AiFillStar className='text-yellow-400' /><AiFillStar className='text-gray-200' /><AiFillStar className='text-gray-200' /></div>
-        </div>
-        <h4>116:40</h4>
-      </div>
-      <div className='flex gap-4 my-5'>
-        <div>
-          <Image
-            width={50} 
-            height={80}
-            src='https://i.ibb.co/J25t2Cw/freedoom.jpg'
-            alt='Popular Movie'
-            className="img-fluid rounded-md"
-          />
-        </div>
-        <div>
-          <h3 className='font-bold'>Freedom</h3>
-          <p className='text-sm'>Action movie</p>
-          <div className='flex gap-1'><AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' />
-          <AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' /><AiFillStar className='text-gray-200' /></div>
-        </div>
-        <h4>116:40</h4>
-      </div>
+   
+      <div className="">
+      {movies.map((movie) => (
+        <MovieItem
+          key={movie.id}
+          imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          title={movie.title}
+          genre={movie.genre_ids.join(', ')} // Genre ids can be mapped to actual names if needed
+          rating={Math.round(movie.vote_average / 2)} // Assuming rating is out of 10, convert to 5-star scale
+          duration={movie.popularity}
+        />
+      ))}
+    </div>
+      
+
       <Button text="See More" onClick={handleClick} />
-      <h5 className="text-lg my-2 font-bold">Watchlist</h5>
-      <div className='flex gap-4'>
-        <div>
-          <Image
-            width={50} 
-            height={80}
-            src='https://i.ibb.co/18SY9sm/natural.jpg'
-            alt='Popular Movie'
-            className="img-fluid rounded-md"
-          />
-        </div>
-        <div>
-          <h3 className='font-bold'>Natural</h3>
-          <p className='text-sm'>Action movie</p>
-          <div className='flex gap-1'><AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' />
-          <AiFillStar className='text-yellow-400' /><AiFillStar className='text-gray-200' /><AiFillStar className='text-gray-200' /></div>
-        </div>
-        <h4>116:40</h4>
-      </div>
-      <div className='flex gap-4 my-5'>
-        <div>
-          <Image
-            width={50} 
-            height={80}
-            src='https://i.ibb.co/J25t2Cw/freedoom.jpg'
-            alt='Popular Movie'
-            className="img-fluid rounded-md"
-          />
-        </div>
-        <div>
-          <h3 className='font-bold'>Freedom</h3>
-          <p className='text-sm'>Action movie</p>
-          <div className='flex gap-1'><AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' />
-          <AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' /><AiFillStar className='text-gray-200' /></div>
-        </div>
-        <h4>116:40</h4>
-      </div>
-      <div className='flex gap-4 my-5'>
-        <div>
-          <Image
-            width={50} 
-            height={80}
-            src='https://i.ibb.co/J25t2Cw/freedoom.jpg'
-            alt='Popular Movie'
-            className="img-fluid rounded-md"
-          />
-        </div>
-        <div>
-          <h3 className='font-bold'>Freedom</h3>
-          <p className='text-sm'>Action movie</p>
-          <div className='flex gap-1'><AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' />
-          <AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' /><AiFillStar className='text-gray-200' /></div>
-        </div>
-        <h4>116:40</h4>
-      </div>
-      <div className='flex gap-4 my-5'>
-        <div>
-          <Image
-            width={50} 
-            height={80}
-            src='https://i.ibb.co/J25t2Cw/freedoom.jpg'
-            alt='Popular Movie'
-            className="img-fluid rounded-md"
-          />
-        </div>
-        <div>
-          <h3 className='font-bold'>Freedom</h3>
-          <p className='text-sm'>Action movie</p>
-          <div className='flex gap-1'><AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' />
-          <AiFillStar className='text-yellow-400' /><AiFillStar className='text-yellow-400' /><AiFillStar className='text-gray-200' /></div>
-        </div>
-        <h4>116:40</h4>
-      </div>
+      <h5 className="text-lg my-2 mt-3 font-bold">Watchlist</h5>
+      <div className="">
+      {tvShows.map((movie) => (
+        <MovieItem
+          key={movie.id}
+          imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          title={movie.original_name}
+          genre={movie.genre_ids.join(', ')} // Genre ids can be mapped to actual names if needed
+          rating={Math.round(movie.vote_average / 2)} // Assuming rating is out of 10, convert to 5-star scale
+          duration={movie.popularity}
+        />
+      ))}
+    </div>
       <Button text="See More" onClick={handleClick} />
     </div>
   );

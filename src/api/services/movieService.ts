@@ -14,14 +14,33 @@ export const fetchNowPlayingMovies = async () => {
   const response = await axios.get(`${BASE_URL}/movie/now_playing`, {
     params: { api_key: API_KEY },
   });
-  return response.data.results.slice(0, 12);
+  return response.data.results.slice(4, 16);
 };
 
+// export const fetchPopularMovies = async () => {
+//   const response = await axios.get(`${BASE_URL}/movie/popular`, {
+//     params: { api_key: API_KEY },
+//   });
+//   return response.data.results.slice(0, 12);
+// };
 export const fetchPopularMovies = async () => {
-  const response = await axios.get(`${BASE_URL}/movie/popular`, {
-    params: { api_key: API_KEY },
-  });
-  return response.data.results.slice(0, 12);
+  try {
+    const response = await axios.get('https://api.themoviedb.org/3/discover/movie', {
+      params: {
+        api_key: API_KEY,
+        include_adult: false,
+        include_video: false,
+        language: 'en-US',
+        page: 1,
+        sort_by: 'popularity.desc',
+      },
+    });
+
+    return response.data.results.slice(6, 18);
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    return [];
+  }
 };
 
 export const fetchLatestTVShow = async () => {
@@ -39,8 +58,17 @@ export const fetchAiringTodayTVShows = async () => {
 };
 
 export const fetchPopularTVShows = async () => {
-  const response = await axios.get(`${BASE_URL}/tv/popular`, {
-    params: { api_key: API_KEY },
-  });
-  return response.data.results.slice(0, 12);
+  try {
+    const response = await axios.get(`${BASE_URL}/tv/popular`, {
+      params: {
+        api_key: API_KEY,
+        language: 'en-US',
+        page: 1,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching popular TV shows:', error);
+    return [];
+  }
 };
