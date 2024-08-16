@@ -3,7 +3,8 @@ import MovieCard from './MovieCard';
 
 interface Movie {
   posterPath: string;
-  title: string;
+  title: string 
+
 }
 
 interface MovieGridProps {
@@ -11,9 +12,10 @@ interface MovieGridProps {
   currentIndex: number;
   itemsPerPage: number;
   onClick: () => void;
+  setSelectedMovie:React.Dispatch<React.SetStateAction<Movie |null>>
 }
 
-const MovieGrid: React.FC<MovieGridProps> = ({ movies, currentIndex, itemsPerPage, onClick }) => {
+const MovieGrid: React.FC<MovieGridProps> = ({ movies, currentIndex, itemsPerPage,setSelectedMovie }) => {
     const handleClick = () => {
         console.log('Button clicked!');
       };
@@ -24,7 +26,7 @@ const MovieGrid: React.FC<MovieGridProps> = ({ movies, currentIndex, itemsPerPag
           key={index}
           posterPath={movie.posterPath}
           title={movie.title}
-          
+          setSelectedMovie={setSelectedMovie}
         />
       ))}
     </div>

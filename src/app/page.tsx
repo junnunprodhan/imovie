@@ -4,7 +4,6 @@ import Sidebar from '../components/Sidebar';
 
 import {
   fetchLatestMovie,
-  fetchMovieDetails,
   fetchNowPlayingMovies,
   fetchNowPlayingTvShows,
   fetchPopularMovies,
@@ -16,24 +15,25 @@ import RightSidebar from '@/components/RightSidebar';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import TopRated from '@/components/TopRated';
 import Footer from '@/components/Footer';
-interface Movie {
+
+export interface Movie {
   posterPath: string;
   title: string;
 }
 
 const Home = () => {
 
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>({
+    title:"",
+    posterPath: ""
+  });
 
-  const handleMovieClick = (movie: Movie) => {
-    setSelectedMovie(movie);
-  };
   const [latestMovie, setLatestMovie] = useState<any>(null);
   const [nowPlayingMovies, setNowPlayingMovies] = useState<any[]>([]);
   const [nowPlayingTvShows, setNowPlayingTvShows] = useState<any[]>([]);
   const [popularMovies, setPopularMovies] = useState<any[]>([]);
   const [popularTvShows, setPopularTvShows] = useState<any[]>([]);
-  const [movieDetails, setMovieDetails] = useState<any[]>([]);
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,13 +52,11 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const popularTvPoster = popularTvShows[3]?.poster_path || "https://i.ibb.co/18SY9sm/natural.jpg"
-  const popularTvShowsTitle= popularTvShows[3]?.original_name 
-  const posterPath = popularMovies[0]?.poster_path || "https://i.ibb.co/KV9dG1z/super.jpg"
-  const title = popularMovies[0]?.title  
-  const handleButtonClick = async() => {
-    console.log('Button click')
-  }
+  // const popularTvPoster = popularTvShows[3]?.poster_path || "https://i.ibb.co/18SY9sm/natural.jpg"
+  // const popularTvShowsTitle= popularTvShows[3]?.original_name 
+  // const posterPath = popularMovies[0]?.poster_path || "https://i.ibb.co/KV9dG1z/super.jpg"
+  // const title = popularMovies[0]?.title  
+  
   return (
     <div>
     <div className="flex max-w-screen-2xl mx-auto">
@@ -90,17 +88,19 @@ const Home = () => {
                 <div  className='h-56'>
           {latestMovie && (
             <Banner
-            title={title}
+            title={selectedMovie?.title || "Super Natural"}
             buttonText="Watch Now"
-            imageUrl={`https://image.tmdb.org/t/p/w500${posterPath || "https://i.ibb.co/KV9dG1z/super.jpg"}`}
+            imageUrl={selectedMovie?.posterPath ? `https://image.tmdb.org/t/p/w500${selectedMovie?.posterPath }`: "" }
             />
           )}
         </div>
 
         <NowPlaying
+        setSelectedMovie={setSelectedMovie}
          movies={nowPlayingMovies}
         ></NowPlaying>
         <TopRated
+        setSelectedMovie={setSelectedMovie}
         movies ={popularMovies}
         >
         </TopRated>
@@ -112,17 +112,18 @@ const Home = () => {
             <div  className='h-56'>
           {latestMovie && (
             <Banner
-              title={popularTvShowsTitle}
-              buttonText="Explore Now"
-              imageUrl={`https://image.tmdb.org/t/p/w500${popularTvPoster || "https://i.ibb.co/KV9dG1z/super.jpg"}`}
-               onButtonClick={handleButtonClick}
+            title={selectedMovie?.title || "Super Natural"}
+              buttonText="Watch Now"
+              imageUrl={selectedMovie?.posterPath ? `https://image.tmdb.org/t/p/w500${selectedMovie?.posterPath }`: "" }
             />
           )}
         </div>
         <NowPlaying
+        setSelectedMovie={setSelectedMovie}
          movies={nowPlayingTvShows}
         ></NowPlaying>
         <TopRated
+        setSelectedMovie={setSelectedMovie}
         movies ={popularTvShows}
         >
         </TopRated>

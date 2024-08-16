@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-
+import image from "@/images/super.jpg"
 interface BannerProps {
   title: string;
   buttonText: string;
@@ -15,7 +15,7 @@ const Banner: React.FC<BannerProps> = ({ title, buttonText, imageUrl, onButtonCl
     <div className="relative w-full h-[300px] mb-10 pb-10">
       <div className="absolute inset-0">
         <Image
-          src={imageUrl}
+          src={imageUrl || image}
           alt={title}
           layout="fill"
           className="w-full h-full"

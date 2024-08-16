@@ -11,9 +11,10 @@ interface MovieGridProps {
   currentIndex: number;
   itemsPerPage: number;
   onClick: () => void;
+  setSelectedMovie:React.Dispatch<React.SetStateAction<Movie |null>>
 }
 
-const TopRatedMovieGrid: React.FC<MovieGridProps> = ({ movies, currentIndex, itemsPerPage, onClick }) => {
+const TopRatedMovieGrid: React.FC<MovieGridProps> = ({ movies, currentIndex, itemsPerPage, onClick, setSelectedMovie}) => {
     const handleClick = () => {
         console.log('Button clicked!');
       };
@@ -24,7 +25,7 @@ const TopRatedMovieGrid: React.FC<MovieGridProps> = ({ movies, currentIndex, ite
           key={index}
           posterPath={movie.posterPath}
           title={movie.title}
-          
+          setSelectedMovie={setSelectedMovie}
         />
       ))}
     </div>

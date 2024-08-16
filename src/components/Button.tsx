@@ -52,22 +52,5 @@ interface ImageCardProps {
   onButtonClick?: () => void;
 }
 
-// const ImageCard: React.FC<ImageCardProps> = ({ src, alt, buttonText, onButtonClick }) => {
-//   return (
-//     <div className="relative w-full h-full rounded-lg overflow-hidden shadow-lg">
-//       <Image
-//         src={src}
-//         alt={alt}
-//         layout="fill"
-//         objectFit="cover"
-//         className="rounded-lg"
-//       />
-//       <div className="absolute bottom-5 transform -translate-x-1/2">
-//         <Button text={buttonText} onClick={onButtonClick} />
-//       </div>
-//     </div>
-//   );
-// };
-
 export default Button;
 

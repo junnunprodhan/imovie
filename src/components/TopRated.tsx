@@ -10,9 +10,10 @@ interface Movie {
 
 interface TopRatedProps {
   movies: Movie[];
+  setSelectedMovie:React.Dispatch<React.SetStateAction<Movie |null>>
 }
 
-const TopRated: React.FC<TopRatedProps> = ({ movies }) => {
+const TopRated: React.FC<TopRatedProps> = ({ movies,setSelectedMovie }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
@@ -46,6 +47,7 @@ const TopRated: React.FC<TopRatedProps> = ({ movies }) => {
         currentIndex={currentIndex}
         itemsPerPage={itemsPerPage}
         onClick={handleClick}
+        setSelectedMovie={setSelectedMovie}
       />
 
       <NavigationButtons
