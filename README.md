@@ -5,12 +5,15 @@
 <h1 align="center">IMovie</h1>
 
 <p align=center>
-  <a href="https://deshi-shop-client-final.onrender.com/">Website Link</a>
+  <a href="https://imovie-sqaz.onrender.com/">Website Link</a>
 </p>
 
 ---
 
-## Features
+## HOW to run in local computer
+- env.local add api key
+- npm install
+- npm run dev
 
 ### Tech Stack
 - Next JS
