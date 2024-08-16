@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import Button from './Button';
-
+import { AiOutlinePlus } from "react-icons/ai";
 interface MovieCardProps {
   posterPath: string;
   title: string;
@@ -20,7 +20,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ posterPath, title }) => {
         alt={title}
         className="img-fluid"
       />
+      <AiOutlinePlus className='absolute text-white font-bold text-2xl p-1 top-2 right-2 bg-gray-800 bg-opacity-35'  />
       <Button text="Watch Now" onClick={handleClick} />
+      
     </div>
   );
 };

@@ -9,7 +9,6 @@ const RightSidebar = () => {
   const [popularTvShows, setPopularTvShows] = useState<any[]>([]);
       const movies =popularMovies.slice(0,2) 
       const tvShows = popularTvShows.slice(0,4)
-      console.log(tvShows)
   useEffect(() => {
     const fetchData = async () => {
       
@@ -36,15 +35,12 @@ const RightSidebar = () => {
           key={movie.id}
           imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           title={movie.title}
-          genre={movie.genre_ids.join(', ')} // Genre ids can be mapped to actual names if needed
-          rating={Math.round(movie.vote_average / 2)} // Assuming rating is out of 10, convert to 5-star scale
+          genre={movie.genre_ids.join(', ')} 
+          rating={Math.round(movie.vote_average / 2)} 
           duration={movie.popularity}
         />
       ))}
     </div>
-      
-
-      {/* <Button text="See More" onClick={handleClick} /> */}
       <SeeMoreButton text="See More" onClick={handleClick}/>
       <h5 className="text-lg my-2 mt-3 font-bold">Watchlist</h5>
       <div className="">
@@ -53,8 +49,8 @@ const RightSidebar = () => {
           key={movie.id}
           imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           title={movie.original_name}
-          genre={movie.genre_ids.join(', ')} // Genre ids can be mapped to actual names if needed
-          rating={Math.round(movie.vote_average / 2)} // Assuming rating is out of 10, convert to 5-star scale
+          genre={movie.genre_ids.join(', ')} 
+          rating={Math.round(movie.vote_average / 2)} 
           duration={movie.popularity}
         />
       ))}

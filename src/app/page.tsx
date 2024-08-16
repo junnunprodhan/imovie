@@ -1,8 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
-import NMovieCard from "../components/NMovieCard"
-import NBanner from "../components/NBanner"
 
 import {
   fetchLatestMovie,
@@ -27,12 +25,6 @@ const Home = () => {
 
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-  const movies = [
-    { posterPath: '/path_to_movie1.jpg', title: 'Movie 1' },
-    { posterPath: '/path_to_movie2.jpg', title: 'Movie 2' },
-    // Add more movies as needed
-  ];
-
   const handleMovieClick = (movie: Movie) => {
     setSelectedMovie(movie);
   };
@@ -42,7 +34,6 @@ const Home = () => {
   const [popularMovies, setPopularMovies] = useState<any[]>([]);
   const [popularTvShows, setPopularTvShows] = useState<any[]>([]);
   const [movieDetails, setMovieDetails] = useState<any[]>([]);
-  console.log('popular',popularMovies)
 
   useEffect(() => {
     const fetchData = async () => {
