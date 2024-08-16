@@ -178,13 +178,12 @@ interface BannerProps {
 
 const Banner: React.FC<BannerProps> = ({ title, buttonText, imageUrl, onButtonClick }) => {
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-[300px] mb-10 pb-10">
       <div className="absolute inset-0">
         <Image
           src={imageUrl}
           alt={title}
           layout="fill"
-          objectFit="cover"
           className="w-full h-full"
         />
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -204,7 +203,7 @@ const Banner: React.FC<BannerProps> = ({ title, buttonText, imageUrl, onButtonCl
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {buttonText}
+          Watch Now
         </motion.button>
       </div>
     </div>

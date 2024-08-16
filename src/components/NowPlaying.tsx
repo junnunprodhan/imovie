@@ -129,7 +129,7 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ movies}) => {
   };
 
   return (
-    <div className="relative mt-5">
+    <div className="relative mt-24">
       <h4 className="text-xl font-semibold mb-4">Now Playing</h4>
 
       <MovieGrid

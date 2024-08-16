@@ -15,7 +15,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ posterPath, title }) => {
     <div className="text-center relative">
       <Image
       width={250}
-      height={300}
+      height={250}
         src={`https://image.tmdb.org/t/p/w500/${posterPath}`}
         alt={title}
         className="img-fluid"
