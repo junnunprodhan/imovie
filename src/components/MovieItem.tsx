@@ -6,8 +6,8 @@ interface MovieItemProps {
   imageUrl: string;
   title: string;
   genre: string;
-  rating: number; // Assuming rating is out of 5
-  duration: string; // Duration in "hh:mm" format
+  rating: number;
+  duration: string; 
 }
 
 const MovieItem: React.FC<MovieItemProps> = ({ imageUrl, title, genre, rating, duration }) => {

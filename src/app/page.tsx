@@ -52,11 +52,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  // const popularTvPoster = popularTvShows[3]?.poster_path || "https://i.ibb.co/18SY9sm/natural.jpg"
-  // const popularTvShowsTitle= popularTvShows[3]?.original_name 
-  // const posterPath = popularMovies[0]?.poster_path || "https://i.ibb.co/KV9dG1z/super.jpg"
-  // const title = popularMovies[0]?.title  
-  
   return (
     <div>
     <div className="flex max-w-screen-2xl mx-auto">
@@ -112,7 +107,7 @@ const Home = () => {
             <div  className='h-56'>
           {latestMovie && (
             <Banner
-            title={selectedMovie?.title || "Super Natural"}
+            title={selectedMovie?.title || "Tv Shows"}
               buttonText="Watch Now"
               imageUrl={selectedMovie?.posterPath ? `https://image.tmdb.org/t/p/w500${selectedMovie?.posterPath }`: "" }
             />

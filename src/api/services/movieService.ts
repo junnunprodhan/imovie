@@ -52,10 +52,6 @@ export const fetchMovieDetails = async (movieId: number) => {
     throw error;
   }
 };
-
-
-
-
 export const fetchNowPlayingTvShows = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/tv/airing_today`, {
@@ -66,8 +62,8 @@ export const fetchNowPlayingTvShows = async () => {
       },
     });
 
-    // Slice the results if you want to limit the number of TV shows returned
-    const tvShows = response.data.results.slice(0, 10); // Fetch the top 10 airing today
+
+    const tvShows = response.data.results.slice(0, 10);
     return tvShows;
   } catch (error) {
     console.error('Error fetching TV shows airing today:', error);

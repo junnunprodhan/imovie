@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import MovieGrid from './MovieGrid';
 import NavigationButtons from './NavigationButtons';
 import TopRatedMovieGrid from './TopRatedMovieGrid';
 
